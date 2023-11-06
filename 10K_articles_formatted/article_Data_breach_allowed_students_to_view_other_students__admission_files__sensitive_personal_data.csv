@@ -1,0 +1,140 @@
+,date,content,title,name
+5376,2019-02-14,"before this week Stanford students could view the Common Applications and high school transcripts of other students if they first requested to view their own admission documents under the Family Educational Rights and Privacy Act FERPA PERIOD
+
+Accessible documents contained sensitive personal information including for some students Social Security numbers PERIOD Other obtainable data included students ethnicity legacy status home address citizenship status criminal status standardized test scores personal essays and whether they applied for financial aid PERIOD Official standardized test score reports were also accessible PERIOD
+
+Students documents were not searchable by name but were instead made accessible by changing a numeric ID in a URL PERIOD
+
+A Stanford student who recently submitted a FERPA request for their admissions documents discovered the vulnerability in a thirdparty content management system called NolijWeb that the University has used since  to host scanned files PERIOD Since  students who have submitted FERPA requests have been able to view files through NolijWeb PERIOD
+
+Between Jan PERIOD  and  the student briefly accessed  students records while attempting to assess the scope of the vulnerability PERIOD Others informed of the issue accessed information contained in  students records during that time period while seeking to learn more about the kinds of files exposed PERIOD University spokesperson Brad Hayward said the University has not identified other instances of unauthorized viewing but is still reviewing the matter PERIOD
+
+The Daily withheld reporting on the exposed data until the University could secure the breach so that students records could be protected PERIOD The student who disclosed the breach to The Daily was granted anonymity to protect them from potential legal repercussions for accessing private information while investigating the security flaw PERIOD
+
+Stanford will notify the  students whose privacy was compromised because of this flaw PERIOD
+
+We regret this vulnerability in our system and apologize to those whose records were inappropriately viewed Hayward wrote in an email to The Daily PERIOD We have worked to remedy the situation as quickly as possible and will continue working to better protect our systems and data. stanford has also notified Nolijs parent company Hyland Software of the vulnerability PERIOD Hyland acquired Nolij in  and announced on Dec PERIOD   that it would be discontinuing the NolijWeb product PERIOD While Stanford University Information Technology UIT intends to finish implementing a new platform to replace the NolijWeb system by this summer a number of schools still use NolijWeb to store admissions records PERIOD It is unclear how many schools using NolijWeb give students access to the online documents or how many might be subject to the vulnerability PERIOD
+
+The Daily reached out to eight different executives at Hyland Software for comment and expressed concern that other schools data may be similarly compromised by NolijWeb PERIOD Alexa Marinos Hylands Senior Manager of Corporate Communications confirmed receiving The Dailys phone and email requests for comment made over the course of a week PERIOD However the company provided no statement on the matter PERIOD
+
+
+
+Accessing admissions records
+
+FERPA a U.S PERIOD federal law provides to parents specific protections related to their childrens education records including academic transcripts and family contact information PERIOD Students who are at least  years old or enrolled in postsecondary educationmay request their own education records under the law PERIOD
+
+FERPA gained recognition among Stanford students in January  after the Fountain Hopper FoHo a widelycirculated campus email newsletter reported that FERPA requests allow students to see their Stanford application materials including the numerical scores assigned to them by admissions officers PERIOD Officers were found to rate applicants on a scale of one to five on various metrics including testing personal qualities and interviews PERIOD Legacy status ethnicity and 300word summaries written by Stanford admissions counselors distilling their perception of the candidate were all available PERIOD Any student who requested their application materials would receive printed copies of their admissions documents stored on NolijWeb PERIOD
+
+Deluged with FERPA requests after the FoHos report Stanford and other universities soon began erasing records of admissions officers ratings and comments on student applications once students arrive on campus PERIOD At this point Stanford began to give students direct access to NolijWeb to expedite access to their own records PERIOD Occasionally a delay involved in destroying the records still allows firstyear students to view such comments on their admissions records multiple current freshmen found PERIOD
+
+
+
+The vulnerability explained
+
+Students whose FERPA requests are approved by the University are directed toward a link titled Student Admission Documents on Axess Stanfords information portal for students faculty and staff PERIOD That link directs them to NolijWeb where  after entering their SUNet IDs into a search box  students can view their own scanned documents PERIOD
+
+When a user views one of their files the browser performs a network request PERIOD However a student may use tools like Google Chromes Inspect Element  commonly used by programmers to debug websites  to view that network requests URL and modify it to give them access to another students files PERIOD
+
+While using file identifications in such a URL is not uncommonsites typically add protections to prevent people from accessing files not intended for them PERIOD
+
+Because URLs and files are linked through numeric IDs the NolijWeb vulnerability did not allow students to retrieve documents by name nor by any other identifying information PERIOD Instead incrementing file ID numbers in URLs allowed access to arbitrary students files PERIOD But a web scraper could theoretically help someone download all available documents the student who discovered the vulnerability said PERIOD
+
+The student was especially concerned that their Social Security number was visible on one of their documents PERIOD
+
+It wasnt anything sophisticated the student said of their methods adding that anyone with web development experience could have exploited the vulnerability with ease PERIOD You change the ID slightly and it just gives you someone elses records. stanfords response
+
+Since learning of the vulnerability UIT has disabled the component of NolijWeb that allowed students to access others records PERIOD In the meantime the University has suspended online access to FERPA documents while it researches shortterm alternatives PERIOD
+
+UIT has also maintained logs of unauthorized access to students files since the issue was brought to their attention and Hayward said a thorough review is currently underway. though Stanford has used NolijWeb for  years and students have had direct access since  the University does not know how long the vulnerability has existed PERIOD
+
+Exploiting this vulnerability requires an authenticated student login and specific knowledge of the applications underlying behavior Hayward wrote PERIOD We believe this to be the first report of the issue. because of the necessity of an authenticated student login the vulnerability was not detected by UITs regular audits of its thirdparty software Hayward said PERIOD
+
+He noted that the vulnerability did not allow students to access other documents stored in NolijWeb besides the admissions files of undergraduates PERIOD But students who have graduated since  may have had their files exposed he added PERIOD
+
+
+
+Cybersecurity issues at Stanford
+
+Stanfords Information Security Office is continually looking for opportunities to bolster the overall security posture of our systems Hayward wrote PERIOD
+
+One such effort was the recent launch of Stanfords Bug Bounty Program meant to encourage community members to notify the University of vulnerabilities in its web systems PERIOD However the FERPA records exposure would not qualify for the program the web domain affected is not among those listed as eligible for a bounty PERIOD
+
+
+
+As this is an experimental program we wanted to begin with a very limited set of systems to gauge the response Hayward wrote PERIOD If the program goes well we intend to gradually expand the scope over time. if within the initiatives scope a vulnerability that results in the exposure of sensitive information is eligible for a reward of  to  PERIOD Since learning of the NolijWeb data breach Stanford has amended the Bug Bounty Program to explicitly include safe harbor provisions for discovery of outofscope vulnerabilities that are responsibly reported. the programs terms specify that participants must not access confidential information beyond what is absolutely necessary to demonstrate the vulnerability PERIOD
+
+As of Monday UIT had received  submissions to the Bug Bounty program of varying severity levels Hayward wrote PERIOD Stanford intends to publish highlevel information about the bugs but not the details on the programs website PERIOD
+
+Even after a fix is implemented publicly disclosing a vulnerability still has security implications Hayward wrote PERIOD
+
+Prior to the establishment of the Bug Bounty program multiple other cybersecurity issues at Stanford resulted in leaks of Stanford affiliates data PERIOD
+
+In late  The Daily discovered permissions errors in a Universitywide filesharing system called the Andrew File System AFS that allowed any Stanford community members  as well as AFS users from other schools  to access information on sexual assault cases prepared from campus therapy sessions emails about student conduct issues and other confidential information PERIOD
+
+A month later Stanford reported that the names birthdays salaries and social security numbers of  University staff members working in  had been exposed on a shared Graduate School of Business GSB site between September  and March  PERIOD The information was also accidentally made public due to permissions errors PERIOD Shortly after the leaks reveal GSB Associate Dean and Chief Digital Officer Ranga Jayaraman announced he would leave his job PERIOD
+
+The student who found the FERPA vulnerability said the recent succession of data breaches at Stanford is concerning PERIOD
+
+I think its kind of ironic that Stanford is one of the best CS schools in the country but its so negligent in terms of these kinds of important records they said PERIOD
+
+
+
+Contact Julia Ingram at jmingram at stanford.edu and Hannah Knowles at hknowles at stanford.edu PERIOD
+
+Julia Ingram  was The Dailys Volume  editorinchief PERIOD She is a New York City native majoring in English literature and working toward a career in news reporting PERIOD Contact her at jingram at stanforddaily.com.Hannah Knowles is senior staff writer from San Jose who served as Volume  EditorinChief PERIOD Prior to that she managed The Dailys news section PERIOD
+
+University
+
+Academics
+
+Campus Life
+
+Graduate Students
+
+Business  Technology
+
+Data
+
+Equity Project
+
+Fall Sports
+
+Winter Sports
+
+Spring Sports
+
+Screen
+
+Culture
+
+Music
+
+Reads
+
+Columnists
+
+Editorials
+
+Letters from the Editor
+
+Letters to the Editor
+
+OpEds
+
+Video
+
+Podcasts
+
+Cartoons
+
+Graphics
+
+Tech
+
+  THE STANFORD DAILY PUBLISHING CORPORATION
+
+Privacy Policy     Accessibility     Advertise
+
+Proudly Powered by WordPress
+
+Donate and support The Daily when you shop on Amazon","Data breach allowed students to view other students’ admission files, sensitive personal data",Stanford University
